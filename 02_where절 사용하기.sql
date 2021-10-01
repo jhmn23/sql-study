@@ -1,0 +1,146 @@
+-- where 절
+SELECT *
+FROM employees
+WHERE salary > 14000; -- 월급이 14000보다 많은 직원
+
+SELECT *
+FROM employees
+WHERE last_name = 'King'; -- 문자열은 따옴표로 표시
+
+SELECT *
+FROM employees
+WHERE hire_date < '2002/06/10'; -- 날짜를 비교, 고용일이 2002년 6월 10일 이전
+
+-- 예제 1)
+SELECT *
+FROM employees
+WHERE employee_id = '100';
+
+-- 예제 2)
+SELECT *
+FROM employees
+WHERE fist_name = 'David';
+
+-- 예제 3)
+SELECT *
+FROM employees
+WHERE employee_id <= '105';
+
+-- 예제 4)
+SELECT *
+FROM job_history
+WHERE start_date > '2006/03/03';
+
+-- 예제 5)
+SELECT *
+FROM departments
+WHERE location_id != '1700'; -- <>
+
+
+-- 논리 연산자 AND OR NOT
+SELECT last_name, department_id, salary
+FROM employees
+WHERE department_id = 60
+    OR (department_id = 80
+    AND salary > 10000);
+    
+SELECT *
+FROM employees
+WHERE NOT( hire_date > '2004/01/01' OR salary > 5000 );
+-- hire_date <= '2004/01/01' AND salary <= 5000
+
+-- 예제 1)
+SELECT *
+FROM employees
+WHERE salary > 4000 AND job_id = 'IT_PROG';
+
+-- 예제 2)
+SELECT *
+FROM employees
+WHERE salary > 4000 
+    AND (job_id = 'IT_PROG' OR job_id = 'FI_ACCOUNT');
+
+
+-- IN 연산자 : ()안의 값과 같을 때 OR로 연결
+SELECT *
+FROM employees
+WHERE salary IN ( 4000, 3000, 2700 );
+-- WHERE salary = 4000 OR salary = 3000 OR salary =2700
+
+-- 예제 1)
+SELECT *
+FROM employees
+WHERE salary IN ( 10000, 17000, 24000 );
+
+-- 예제 2)
+SELECT *
+FROM employees
+WHERE department_id NOT IN ( 30, 50, 80, 100, 100 );
+
+
+-- between 사잇값
+SELECT *
+FROM employees
+WHERE salary BETWEEN 9000 AND 10000;
+-- WHERE salary >= 9000 AND salary <= 10000;
+
+-- 예제 1)
+SELECT *
+FROM employees
+WHERE salary BETWEEN 10000 AND 20000;
+
+-- 예제 2)
+SELECT *
+FROM employees
+WHERE hire_date BETWEEN '2004/01/01' AND '2004/12/30';
+
+-- 예제 3)
+SELECT *
+FROM employees
+WHERE salary NOT BETWEEN 7000 AND 17000; 
+
+
+-- LIKE 연산자 _ %를 같이 사용해서 문자열을 검색
+SELECT *
+FROM employees
+WHERE last_name LIKE 'B%'; -- 대문자B로 시작 뒤에는 상관없음
+SELECT *
+FROM employees
+WHERE last_name LIKE '%b%'; -- 문자열의 중간에 B가 있으면 전부 출력
+SELECT *
+FROM employees
+WHERE last_name LIKE '____y'; -- 언더바(_) 정확한 자릿수를 표현
+
+-- 예제 1)
+SELECT *
+FROM employees
+WHERE job_id LIKE '%AD%';
+
+-- 예제 2)
+SELECT *
+FROM employees
+WHERE job_id LIKE 'AD%___';
+
+-- 예제 3)
+SELECT *
+FROM employees
+WHERE phone_number LIKE '%1234';
+
+-- 예제 4)
+SELECT *
+FROM employees
+WHERE phone_number NOT LIKE '%3%' AND phone_number LIKE '%9';
+
+-- 예제 5)
+SELECT *
+FROM employees
+WHERE job_id LIKE '%MGR%' OR job_id LIKE '%ASST%';
+
+
+SELECT commission_pct FROM employees;
+-- 널(NULL) 이란?
+-- 입력되지 않은 사용할 수 없는 값이고 0 또는 공백('')이 아니다.
+-- 널 값을 검색하기 위해 is NULL을 사용
+SELECT * FROM employees WHERE commission_pct is NULL;
+-- 널 값이 아닐 경우면 찾을 때 is NOT NULL
+SELECT * FROM employees WHERE commission_pct is NOT NULL;
