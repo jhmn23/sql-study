@@ -19,7 +19,7 @@ WHERE employee_id = '100';
 -- 예제 2)
 SELECT *
 FROM employees
-WHERE fist_name = 'David';
+WHERE first_name = 'David';
 
 -- 예제 3)
 SELECT *
@@ -144,3 +144,32 @@ SELECT commission_pct FROM employees;
 SELECT * FROM employees WHERE commission_pct is NULL;
 -- 널 값이 아닐 경우면 찾을 때 is NOT NULL
 SELECT * FROM employees WHERE commission_pct is NOT NULL;
+
+
+-- ORDER BY 열 + ASC or DESC(열의 오름차순 or 내림차순) 정렬
+SELECT * FROM employees ORDER BY employee_id DESC;
+SELECT * FROM employees ORDER BY employee_id; -- ASC 기본정렬은 생략가능
+
+-- 정렬 열이 2개 이상일 때 첫번째 열로 정렬 후 두번째 열 정렬
+SELECT department_id, employee_id, first_name, last_name
+FROM employees
+ORDER BY department_id, employee_id;
+
+-- 별칭으로 정렬
+SELECT department_id, last_name, salary*12 연봉
+FROM employees ORDER BY 연봉 DESC;
+
+-- 예제 1)
+SELECT employee_id, first_name, last_name
+FROM employees
+ORDER BY employee_id DESC;
+
+-- 예제 2)
+SELECT *
+FROM employees
+WHERE job_id LIKE '%CLERK%' ORDER BY salary DESC;
+
+-- 예제 3)
+SELECT employee_id 직원번호, last_name 직원이름, department_id 부서번호, salary 월급
+FROM employees
+WHERE employee_id BETWEEN 120 AND 150 ORDER BY 부서번호 DESC, 월급 DESC;
