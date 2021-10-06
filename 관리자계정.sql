@@ -4,3 +4,8 @@ SELECT SYSDATE FROM DUAL;
 -- HR(연습용계정)을 언락하고 비밀번호 1234 지정
 ALTER USER HR ACCOUNT UNLOCK
 IDENTIFIED BY 1234;
+
+-- SCOTT 계정을 설치 및 비번정하기
+@C:\oraclexe\app\oracle\product\11.2.0\server\rdbms\admin\scott.sql;
+ALTER USER scott ACCOUNT UNLOCK
+IDENTIFIED BY 1234;

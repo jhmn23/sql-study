@@ -106,7 +106,7 @@ FROM employees
 WHERE last_name LIKE 'B%'; -- 대문자B로 시작 뒤에는 상관없음
 SELECT *
 FROM employees
-WHERE last_name LIKE '%b%'; -- 문자열의 중간에 B가 있으면 전부 출력
+WHERE last_name LIKE '%b%'; -- 문자열의 모두에 B가 있으면 전부 출력
 SELECT *
 FROM employees
 WHERE last_name LIKE '____y'; -- 언더바(_) 정확한 자릿수를 표현
