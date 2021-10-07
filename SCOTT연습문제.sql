@@ -174,7 +174,7 @@ FROM emp
 ORDER BY total DESC;
 
 --35
-SELECT ename, sal, TO_CHAR(ROUND((sal*0.15), 1), '$999.9') 회비
+SELECT ename, sal, TO_CHAR(sal*0.15, '$999.9') 회비
 FROM emp
 WHERE sal BETWEEN 1500 AND 3000;
 
@@ -193,13 +193,13 @@ GROUP BY job
 HAVING SUM(sal) > 5000;
 
 --38
-SELECT empno, ename, sal, grade
+SELECT e.empno, e.ename, e.sal, s.grade
 FROM emp e 
 JOIN salgrade s 
-ON sal BETWEEN losal AND hisal;
+ON e.sal BETWEEN s.losal AND s.hisal;
 
 --39
-SELECT deptno, count(empno) 사원수, NVL(count(comm), 0) 커미션받은사원수
+SELECT deptno, count(empno) 사원수, count(comm) "커미션 받은 사원수"
 FROM emp
 GROUP BY deptno;
 
